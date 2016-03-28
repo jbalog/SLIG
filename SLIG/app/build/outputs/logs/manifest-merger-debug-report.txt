@@ -1,0 +1,128 @@
+-- Merging decision tree log ---
+manifest
+ADDED from C:\dev\SLIG\SLIG\app\src\main\AndroidManifest.xml:2:1-43:12
+	xmlns:android
+		ADDED from C:\dev\SLIG\SLIG\app\src\main\AndroidManifest.xml:3:11-69
+	package
+		ADDED from C:\dev\SLIG\SLIG\app\src\main\AndroidManifest.xml:2:11-33
+		INJECTED from C:\dev\SLIG\SLIG\app\src\main\AndroidManifest.xml
+		INJECTED from C:\dev\SLIG\SLIG\app\src\main\AndroidManifest.xml
+	android:versionName
+		INJECTED from C:\dev\SLIG\SLIG\app\src\main\AndroidManifest.xml
+		INJECTED from C:\dev\SLIG\SLIG\app\src\main\AndroidManifest.xml
+	android:versionCode
+		INJECTED from C:\dev\SLIG\SLIG\app\src\main\AndroidManifest.xml
+		INJECTED from C:\dev\SLIG\SLIG\app\src\main\AndroidManifest.xml
+uses-feature#android.hardware.bluetooth_le
+ADDED from C:\dev\SLIG\SLIG\app\src\main\AndroidManifest.xml:11:5-89
+	android:required
+		ADDED from C:\dev\SLIG\SLIG\app\src\main\AndroidManifest.xml:11:64-87
+	android:name
+		ADDED from C:\dev\SLIG\SLIG\app\src\main\AndroidManifest.xml:11:19-63
+uses-permission#android.permission.BLUETOOTH
+ADDED from C:\dev\SLIG\SLIG\app\src\main\AndroidManifest.xml:13:5-67
+	android:name
+		ADDED from C:\dev\SLIG\SLIG\app\src\main\AndroidManifest.xml:13:22-65
+uses-permission#android.permission.BLUETOOTH_ADMIN
+ADDED from C:\dev\SLIG\SLIG\app\src\main\AndroidManifest.xml:14:5-73
+	android:name
+		ADDED from C:\dev\SLIG\SLIG\app\src\main\AndroidManifest.xml:14:22-71
+application
+ADDED from C:\dev\SLIG\SLIG\app\src\main\AndroidManifest.xml:16:5-41:27
+MERGED from [com.android.support:appcompat-v7:23.2.0] C:\dev\SLIG\SLIG\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.2.0\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-v4:23.2.0] C:\dev\SLIG\SLIG\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.2.0\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:animated-vector-drawable:23.2.0] C:\dev\SLIG\SLIG\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\23.2.0\AndroidManifest.xml:7:5-20
+MERGED from [com.android.support:support-vector-drawable:23.2.0] C:\dev\SLIG\SLIG\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\23.2.0\AndroidManifest.xml:7:5-20
+MERGED from [com.android.support:support-v4:23.2.0] C:\dev\SLIG\SLIG\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.2.0\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-vector-drawable:23.2.0] C:\dev\SLIG\SLIG\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\23.2.0\AndroidManifest.xml:7:5-20
+MERGED from [com.android.support:support-v4:23.2.0] C:\dev\SLIG\SLIG\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.2.0\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:design:23.2.0] C:\dev\SLIG\SLIG\app\build\intermediates\exploded-aar\com.android.support\design\23.2.0\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-v4:23.2.0] C:\dev\SLIG\SLIG\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.2.0\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:appcompat-v7:23.2.0] C:\dev\SLIG\SLIG\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.2.0\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-v4:23.2.0] C:\dev\SLIG\SLIG\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.2.0\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:animated-vector-drawable:23.2.0] C:\dev\SLIG\SLIG\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\23.2.0\AndroidManifest.xml:7:5-20
+MERGED from [com.android.support:support-vector-drawable:23.2.0] C:\dev\SLIG\SLIG\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\23.2.0\AndroidManifest.xml:7:5-20
+MERGED from [com.android.support:support-v4:23.2.0] C:\dev\SLIG\SLIG\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.2.0\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-vector-drawable:23.2.0] C:\dev\SLIG\SLIG\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\23.2.0\AndroidManifest.xml:7:5-20
+MERGED from [com.android.support:support-v4:23.2.0] C:\dev\SLIG\SLIG\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.2.0\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-v4:23.2.0] C:\dev\SLIG\SLIG\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.2.0\AndroidManifest.xml:22:5-20
+	android:supportsRtl
+		ADDED from C:\dev\SLIG\SLIG\app\src\main\AndroidManifest.xml:20:9-35
+	android:label
+		ADDED from C:\dev\SLIG\SLIG\app\src\main\AndroidManifest.xml:19:9-41
+	android:allowBackup
+		ADDED from C:\dev\SLIG\SLIG\app\src\main\AndroidManifest.xml:17:9-35
+	android:icon
+		ADDED from C:\dev\SLIG\SLIG\app\src\main\AndroidManifest.xml:18:9-48
+	android:theme
+		ADDED from C:\dev\SLIG\SLIG\app\src\main\AndroidManifest.xml:21:9-54
+activity#group24.SLIG.MainActivity
+ADDED from C:\dev\SLIG\SLIG\app\src\main\AndroidManifest.xml:22:5-29:16
+	android:name
+		ADDED from C:\dev\SLIG\SLIG\app\src\main\AndroidManifest.xml:22:15-55
+intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
+ADDED from C:\dev\SLIG\SLIG\app\src\main\AndroidManifest.xml:23:9-27:25
+action#android.intent.action.MAIN
+ADDED from C:\dev\SLIG\SLIG\app\src\main\AndroidManifest.xml:24:13-64
+	android:name
+		ADDED from C:\dev\SLIG\SLIG\app\src\main\AndroidManifest.xml:24:21-62
+category#android.intent.category.LAUNCHER
+ADDED from C:\dev\SLIG\SLIG\app\src\main\AndroidManifest.xml:26:13-72
+	android:name
+		ADDED from C:\dev\SLIG\SLIG\app\src\main\AndroidManifest.xml:26:23-70
+activity#group24.SLIG.bluetooth.DeviceScanActivity
+ADDED from C:\dev\SLIG\SLIG\app\src\main\AndroidManifest.xml:30:9-38:20
+	android:screenOrientation
+		ADDED from C:\dev\SLIG\SLIG\app\src\main\AndroidManifest.xml:33:13-49
+	android:label
+		ADDED from C:\dev\SLIG\SLIG\app\src\main\AndroidManifest.xml:31:13-44
+	android:theme
+		ADDED from C:\dev\SLIG\SLIG\app\src\main\AndroidManifest.xml:34:13-74
+	android:parentActivityName
+		ADDED from C:\dev\SLIG\SLIG\app\src\main\AndroidManifest.xml:32:13-55
+	android:name
+		ADDED from C:\dev\SLIG\SLIG\app\src\main\AndroidManifest.xml:30:19-63
+meta-data#android.support.PARENT_ACTIVITY
+ADDED from C:\dev\SLIG\SLIG\app\src\main\AndroidManifest.xml:35:13-37:49
+	android:name
+		ADDED from C:\dev\SLIG\SLIG\app\src\main\AndroidManifest.xml:36:17-63
+	android:value
+		ADDED from C:\dev\SLIG\SLIG\app\src\main\AndroidManifest.xml:37:17-46
+activity#group24.SLIG.bluetooth.DeviceControlActivity
+ADDED from C:\dev\SLIG\SLIG\app\src\main\AndroidManifest.xml:39:9-68
+	android:name
+		ADDED from C:\dev\SLIG\SLIG\app\src\main\AndroidManifest.xml:39:19-66
+service#group24.SLIG.bluetooth.BluetoothLeService
+ADDED from C:\dev\SLIG\SLIG\app\src\main\AndroidManifest.xml:40:9-87
+	android:enabled
+		ADDED from C:\dev\SLIG\SLIG\app\src\main\AndroidManifest.xml:40:63-85
+	android:name
+		ADDED from C:\dev\SLIG\SLIG\app\src\main\AndroidManifest.xml:40:18-62
+uses-sdk
+INJECTED from C:\dev\SLIG\SLIG\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+MERGED from [com.android.support:appcompat-v7:23.2.0] C:\dev\SLIG\SLIG\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.2.0\AndroidManifest.xml:21:5-23:78
+MERGED from [com.android.support:support-v4:23.2.0] C:\dev\SLIG\SLIG\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.2.0\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:animated-vector-drawable:23.2.0] C:\dev\SLIG\SLIG\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\23.2.0\AndroidManifest.xml:5:5-44
+MERGED from [com.android.support:support-vector-drawable:23.2.0] C:\dev\SLIG\SLIG\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\23.2.0\AndroidManifest.xml:5:5-43
+MERGED from [com.android.support:support-v4:23.2.0] C:\dev\SLIG\SLIG\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.2.0\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-vector-drawable:23.2.0] C:\dev\SLIG\SLIG\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\23.2.0\AndroidManifest.xml:5:5-43
+MERGED from [com.android.support:support-v4:23.2.0] C:\dev\SLIG\SLIG\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.2.0\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:design:23.2.0] C:\dev\SLIG\SLIG\app\build\intermediates\exploded-aar\com.android.support\design\23.2.0\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:recyclerview-v7:23.2.0] C:\dev\SLIG\SLIG\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\23.2.0\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-v4:23.2.0] C:\dev\SLIG\SLIG\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.2.0\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:appcompat-v7:23.2.0] C:\dev\SLIG\SLIG\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.2.0\AndroidManifest.xml:21:5-23:78
+MERGED from [com.android.support:support-v4:23.2.0] C:\dev\SLIG\SLIG\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.2.0\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:animated-vector-drawable:23.2.0] C:\dev\SLIG\SLIG\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\23.2.0\AndroidManifest.xml:5:5-44
+MERGED from [com.android.support:support-vector-drawable:23.2.0] C:\dev\SLIG\SLIG\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\23.2.0\AndroidManifest.xml:5:5-43
+MERGED from [com.android.support:support-v4:23.2.0] C:\dev\SLIG\SLIG\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.2.0\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-vector-drawable:23.2.0] C:\dev\SLIG\SLIG\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\23.2.0\AndroidManifest.xml:5:5-43
+MERGED from [com.android.support:support-v4:23.2.0] C:\dev\SLIG\SLIG\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.2.0\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-v4:23.2.0] C:\dev\SLIG\SLIG\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.2.0\AndroidManifest.xml:20:5-43
+	android:targetSdkVersion
+		INJECTED from C:\dev\SLIG\SLIG\app\src\main\AndroidManifest.xml
+		INJECTED from C:\dev\SLIG\SLIG\app\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from C:\dev\SLIG\SLIG\app\src\main\AndroidManifest.xml
+		INJECTED from C:\dev\SLIG\SLIG\app\src\main\AndroidManifest.xml
+	tools:overrideLibrary
+		ADDED from [com.android.support:appcompat-v7:23.2.0] C:\dev\SLIG\SLIG\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.2.0\AndroidManifest.xml:23:9-75

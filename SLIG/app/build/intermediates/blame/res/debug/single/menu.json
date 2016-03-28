@@ -1,0 +1,22 @@
+[
+    {
+        "merged": "C:\\dev\\SLIG\\SLIG\\app\\build\\intermediates\\res\\merged\\debug\\menu\\main_toolbar.xml",
+        "source": "C:\\dev\\SLIG\\SLIG\\app\\src\\main\\res\\menu\\main_toolbar.xml"
+    },
+    {
+        "merged": "C:\\dev\\SLIG\\SLIG\\app\\build\\intermediates\\res\\merged\\debug\\menu\\ble_menu.xml",
+        "source": "C:\\dev\\SLIG\\SLIG\\app\\src\\main\\res\\menu\\ble_menu.xml"
+    },
+    {
+        "merged": "C:\\dev\\SLIG\\SLIG\\app\\build\\intermediates\\res\\merged\\debug\\menu\\gatt_services.xml",
+        "source": "C:\\dev\\SLIG\\SLIG\\app\\src\\main\\res\\menu\\gatt_services.xml"
+    },
+    {
+        "merged": "C:\\dev\\SLIG\\SLIG\\app\\build\\intermediates\\res\\merged\\debug\\menu\\main.xml",
+        "source": "C:\\dev\\SLIG\\SLIG\\app\\src\\main\\res\\menu\\main.xml"
+    },
+    {
+        "merged": "C:\\dev\\SLIG\\SLIG\\app\\build\\intermediates\\res\\merged\\debug\\menu\\main_menu.xml",
+        "source": "C:\\dev\\SLIG\\SLIG\\app\\src\\main\\res\\menu\\main_menu.xml"
+    }
+]

@@ -1,0 +1,22 @@
+[
+    {
+        "merged": "C:\\dev\\SLIG\\SLIG\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi-v4\\ic_bluetooth.png",
+        "source": "C:\\dev\\SLIG\\SLIG\\app\\src\\main\\res\\mipmap-mdpi\\ic_bluetooth.png"
+    },
+    {
+        "merged": "C:\\dev\\SLIG\\TabTest2\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi-v4\\ic_launcher.png",
+        "source": "C:\\dev\\SLIG\\TabTest2\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\dev\\AndroidStudioProjects\\TabTest2\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi-v4\\ic_launcher.png",
+        "source": "C:\\dev\\AndroidStudioProjects\\TabTest2\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\dev\\SLIG\\SLIG\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi-v4\\ic_launcher_slig.png",
+        "source": "C:\\dev\\SLIG\\SLIG\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher_slig.png"
+    },
+    {
+        "merged": "C:\\dev\\SLIG\\SLIG\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi-v4\\ic_launcher.png",
+        "source": "C:\\dev\\SLIG\\SLIG\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher.png"
+    }
+]

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest package="group24.SLIG"
+          xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Min/target SDK versions (<uses-sdk>) managed by build.gradle -->
+
+    <!-- Declare this required feature if you want to make the app available to BLE-capable
+    devices only.  If you want to make your app available to devices that don't support BLE,
+    you should omit this in the manifest.  Instead, determine BLE capability by using
+    PackageManager.hasSystemFeature(FEATURE_BLUETOOTH_LE) -->
+    <uses-feature android:name="android.hardware.bluetooth_le" android:required="true"/>
+
+    <uses-permission android:name="android.permission.BLUETOOTH"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher_slig"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Sligtheme.Widget">
+    <activity android:name="group24.SLIG.MainActivity">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN"/>
+
+            <category android:name="android.intent.category.LAUNCHER"/>
+        </intent-filter>
+    <!--BluetoothLeGatt activity-->
+    </activity>
+        <activity android:name=".bluetooth.DeviceScanActivity"
+            android:label="BluetoothLeGatt"
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Holo.Light.DarkActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity android:name=".bluetooth.DeviceControlActivity"/>
+        <service android:name=".bluetooth.BluetoothLeService" android:enabled="true"/>
+            </application>
+
+</manifest>
+
+
+
