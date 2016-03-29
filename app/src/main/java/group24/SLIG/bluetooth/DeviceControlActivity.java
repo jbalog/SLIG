@@ -221,6 +221,7 @@ public class DeviceControlActivity extends AppCompatActivity {
         return true;
     }
 
+    // Handles menu items on Device Control screen
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch(item.getItemId()) {

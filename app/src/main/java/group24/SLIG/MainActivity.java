@@ -50,12 +50,13 @@ public class MainActivity extends FragmentActivity implements OnTabChangeListene
                 // Go to BLE setup activity when bluetooth button pressed
                 // TODO... start new scan OR just return to BLE activity?
                 startBleScan();
+                /*Intent openDeviceScanActivity = new Intent(DeviceScanActivity.class);
+                openDeviceScanActivity.setFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
+                startActivity(openDeviceScanActivity);*/
                 return true;
             }
         });
 
-        // Start Bluetooth configuration
-        startBleScan();
 
         mViewPager = (ViewPager) findViewById(R.id.viewpager);
 
@@ -69,28 +70,6 @@ public class MainActivity extends FragmentActivity implements OnTabChangeListene
         mViewPager.setOnPageChangeListener(MainActivity.this);
     }
 
-   /* // Inflate a menu to be displayed in the toolbar
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            // Go to BLE scan when button pressed
-            case R.id.bleButton:
-                startBleScan();
-                return true;
-
-            default:
-                // If we got here, the user's action was not recognized.
-                // Invoke the superclass to handle it.
-                return super.onOptionsItemSelected(item);
-        }
-    }*/
 
     //Bluetooth configuration
     private void startBleScan() {
