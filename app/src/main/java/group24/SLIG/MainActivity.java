@@ -3,8 +3,16 @@ package group24.SLIG;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.bluetooth.BluetoothClass;
+import android.bluetooth.BluetoothGattCharacteristic;
+import android.content.BroadcastReceiver;
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.ServiceConnection;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
@@ -13,15 +21,18 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.TabHost;
 import android.widget.TabHost.OnTabChangeListener;
+import android.widget.TextView;
 
+import group24.SLIG.bluetooth.BluetoothLeService;
+import group24.SLIG.bluetooth.DeviceControlActivity;
 import group24.SLIG.bluetooth.DeviceScanActivity;
+import group24.SLIG.bluetooth.ServiceConnectionService;
 import group24.SLIG.tabs.FragmentLibrary;
 import group24.SLIG.tabs.FragmentTranslator;
 import group24.SLIG.tabs.MyPageAdapter;
 import group24.SLIG.tabs.MyTabFactory;
-/**
- * Main activity...
- */
+
+/** Main activity...*/
 
 public class MainActivity extends FragmentActivity implements OnTabChangeListener, OnPageChangeListener {
 
@@ -30,6 +41,35 @@ public class MainActivity extends FragmentActivity implements OnTabChangeListene
     private ViewPager mViewPager;
     private Toolbar mActionBartoolbar;
     private Toolbar mSupportActionBar;
+    private Intent bluetoothIntent;
+
+    public void onDestroy() {
+        super.onDestroy();
+        unbindService(ServiceConnectionService.getServiceConnection());
+    }
+
+    public void onResume() {
+        super.onResume();
+        bluetoothIntent = new Intent(this, BluetoothLeService.class);
+        bindService(bluetoothIntent, ServiceConnectionService.getServiceConnection(), Context.BIND_AUTO_CREATE);
+        registerReceiver(mGattUpdateReceiver, makeGattUpdateIntentFilter());
+        BluetoothGattCharacteristic bleChar = ServiceConnectionService.getmBleCharacteristic();
+        if(bleChar != null) {
+            final int charaProp = bleChar.getProperties();
+            if ((charaProp | BluetoothGattCharacteristic.PROPERTY_READ) > 0) {
+                ServiceConnectionService.getmBluetoothLeService().readCharacteristic(bleChar);
+            }
+            if ((charaProp | BluetoothGattCharacteristic.PROPERTY_NOTIFY) > 0) {
+                ServiceConnectionService.getmBluetoothLeService().setCharacteristicNotification(bleChar, true);
+            }
+        }
+    }
+
+    public void onPause() {
+        super.onPause();
+        unbindService(ServiceConnectionService.getServiceConnection());
+        unregisterReceiver(mGattUpdateReceiver);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,15 +88,10 @@ public class MainActivity extends FragmentActivity implements OnTabChangeListene
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 // Go to BLE setup activity when bluetooth button pressed
-                // TODO... start new scan OR just return to BLE activity?
                 startBleScan();
-                /*Intent openDeviceScanActivity = new Intent(DeviceScanActivity.class);
-                openDeviceScanActivity.setFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
-                startActivity(openDeviceScanActivity);*/
                 return true;
             }
         });
-
 
         mViewPager = (ViewPager) findViewById(R.id.viewpager);
 
@@ -70,12 +105,23 @@ public class MainActivity extends FragmentActivity implements OnTabChangeListene
         mViewPager.setOnPageChangeListener(MainActivity.this);
     }
 
-
     //Bluetooth configuration
     private void startBleScan() {
         Intent intent = new Intent(this, DeviceScanActivity.class);
         startActivity(intent);
     }
+
+    private final BroadcastReceiver mGattUpdateReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            final String action = intent.getAction();
+            if (BluetoothLeService.ACTION_DATA_AVAILABLE.equals(action)) {
+                /** This is where the "gesture data" is sent to displayData method below **/
+                String data = intent.getStringExtra(BluetoothLeService.EXTRA_DATA);
+                displayData(data);
+            }
+        }
+    };
 
     // Method to add a TabHost
         private static void AddTab(MainActivity activity, TabHost tabHost, TabHost.TabSpec tabSpec) {
@@ -108,8 +154,8 @@ public class MainActivity extends FragmentActivity implements OnTabChangeListene
             List<Fragment> fList = new ArrayList<Fragment>();
 
             // TODO Put here your Fragments
-            FragmentTranslator f1 = FragmentTranslator.newInstance("Translator Fragment");
-            FragmentLibrary f2 = FragmentLibrary.newInstance("Library Fragment");
+            FragmentTranslator f1 = FragmentTranslator.newInstance("");
+            FragmentLibrary f2 = FragmentLibrary.newInstance("");
             fList.add(f1);
             fList.add(f2);
 
@@ -134,6 +180,27 @@ public class MainActivity extends FragmentActivity implements OnTabChangeListene
 
     public Toolbar getSupportActionBar() {
         return mSupportActionBar;
+    }
+
+    // TODO This is where the "gesture data" is being displayed... need to pass to MainActivity
+    private void displayData(String data) {
+        if (data != null) {
+
+            TextView primaryLetter = (TextView) findViewById(R.id.gestureTextView);
+            Character letter = data.charAt(0);
+            if(Character.isLetter(letter)) {
+                primaryLetter.setText(letter.toString());
+            }
+        }
+    }
+
+    private static IntentFilter makeGattUpdateIntentFilter() {
+        final IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(BluetoothLeService.ACTION_GATT_CONNECTED);
+        intentFilter.addAction(BluetoothLeService.ACTION_GATT_DISCONNECTED);
+        intentFilter.addAction(BluetoothLeService.ACTION_GATT_SERVICES_DISCOVERED);
+        intentFilter.addAction(BluetoothLeService.ACTION_DATA_AVAILABLE);
+        return intentFilter;
     }
 }
 

@@ -19,7 +19,8 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.Sligtheme.Widget">
-    <activity android:name="group24.SLIG.MainActivity">
+    <activity android:name="group24.SLIG.MainActivity"
+        android:screenOrientation="portrait">
         <intent-filter>
             <action android:name="android.intent.action.MAIN"/>
 
@@ -36,8 +37,9 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
-        <activity android:name=".bluetooth.DeviceControlActivity"/>
-        <service android:name=".bluetooth.BluetoothLeService" android:enabled="true"/>
+        <activity android:name=".bluetooth.DeviceControlActivity"
+            android:screenOrientation="portrait"/>
+        <service android:name=".bluetooth.BluetoothLeService" android:enabled="true"/>>
             </application>
 
 </manifest>

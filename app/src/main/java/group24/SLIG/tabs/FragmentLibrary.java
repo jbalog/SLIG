@@ -30,10 +30,11 @@ public class FragmentLibrary extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         mView = inflater.inflate(R.layout.fragment_library, container, false);
+
         String sampleText = getArguments().getString("bString");
 
-        TextView txtSampleText = (TextView) mView.findViewById(R.id.txtViewLibrary);
-        txtSampleText.setText(sampleText);
+//        TextView txtSampleText = (TextView) mView.findViewById(R.id.txtViewLibrary);
+//        txtSampleText.setText(sampleText);
 
         return mView;
     }

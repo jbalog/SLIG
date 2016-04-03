@@ -33,8 +33,8 @@ public class FragmentTranslator extends Fragment{
             mView = inflater.inflate(R.layout.fragment_translator, container, false);
             String sampleText = getArguments().getString("bString");
 
-            TextView txtSampleText = (TextView) mView.findViewById(R.id.txtViewTranslator);
-            txtSampleText.setText(sampleText);
+//            TextView txtSampleText = (TextView) mView.findViewById(R.id.txtViewTranslator);
+//            txtSampleText.setText(sampleText);
 
             return mView;
         }
