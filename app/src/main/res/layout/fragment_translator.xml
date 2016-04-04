@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical" >
 
     <TextView
-        android:id="@+id/txtViewTranslator"
+        android:id="@+id/txtViewGestureList"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -14,14 +14,14 @@
         android:text=""/>
 
     <TextView
+        android:id="@+id/txtViewPrimaryGesture"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text=""
+        android:text="@string/default_gesture"
         android:gravity="center"
-        android:id="@+id/gestureTextView"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
         android:textSize="300sp"/>
 
-</android.support.v7.widget.LinearLayoutCompat>
+</RelativeLayout>

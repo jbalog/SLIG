@@ -3,16 +3,12 @@ package group24.SLIG;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.bluetooth.BluetoothClass;
 import android.bluetooth.BluetoothGattCharacteristic;
 import android.content.BroadcastReceiver;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.ServiceConnection;
 import android.os.Bundle;
-import android.os.IBinder;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
@@ -24,7 +20,6 @@ import android.widget.TabHost.OnTabChangeListener;
 import android.widget.TextView;
 
 import group24.SLIG.bluetooth.BluetoothLeService;
-import group24.SLIG.bluetooth.DeviceControlActivity;
 import group24.SLIG.bluetooth.DeviceScanActivity;
 import group24.SLIG.bluetooth.ServiceConnectionService;
 import group24.SLIG.tabs.FragmentLibrary;
@@ -42,6 +37,7 @@ public class MainActivity extends FragmentActivity implements OnTabChangeListene
     private Toolbar mActionBartoolbar;
     private Toolbar mSupportActionBar;
     private Intent bluetoothIntent;
+    private String gestureArray = " ";
 
     public void onDestroy() {
         super.onDestroy();
@@ -153,7 +149,7 @@ public class MainActivity extends FragmentActivity implements OnTabChangeListene
         private List<Fragment> getFragments(){
             List<Fragment> fList = new ArrayList<Fragment>();
 
-            // TODO Put here your Fragments
+            // Put your Fragments here
             FragmentTranslator f1 = FragmentTranslator.newInstance("");
             FragmentLibrary f2 = FragmentLibrary.newInstance("");
             fList.add(f1);
@@ -182,14 +178,20 @@ public class MainActivity extends FragmentActivity implements OnTabChangeListene
         return mSupportActionBar;
     }
 
-    // TODO This is where the "gesture data" is being displayed... need to pass to MainActivity
     private void displayData(String data) {
-        if (data != null) {
 
-            TextView primaryLetter = (TextView) findViewById(R.id.gestureTextView);
+        if (data != null) {
+            TextView primaryGesture = (TextView) findViewById(R.id.txtViewPrimaryGesture);
+            TextView gestureList = (TextView) findViewById(R.id.txtViewGestureList);
             Character letter = data.charAt(0);
+            String gesture = letter.toString();
             if(Character.isLetter(letter)) {
-                primaryLetter.setText(letter.toString());
+                primaryGesture.setText(gesture);
+                gestureArray = gestureArray + gesture;
+                Character testChar = gestureArray.charAt(gestureArray.length() - 2);
+                if(testChar != letter)    {
+                    gestureList.setText(gestureList.getText() + letter.toString());
+                }
             }
         }
     }
