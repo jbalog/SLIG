@@ -1,31 +1,44 @@
 package group24.SLIG;
 
+import java.sql.Types;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
+import android.annotation.TargetApi;
 import android.bluetooth.BluetoothGattCharacteristic;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.content.res.TypedArrayUtils;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.TabHost;
 import android.widget.TabHost.OnTabChangeListener;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 import group24.SLIG.bluetooth.BluetoothLeService;
 import group24.SLIG.bluetooth.DeviceScanActivity;
 import group24.SLIG.bluetooth.ServiceConnectionService;
-import group24.SLIG.tabs.FragmentLibrary;
+import group24.SLIG.tabs.FragmentLearning;
 import group24.SLIG.tabs.FragmentTranslator;
 import group24.SLIG.tabs.MyPageAdapter;
 import group24.SLIG.tabs.MyTabFactory;
+
+import static group24.SLIG.R.*;
 
 /** Main activity...*/
 
@@ -38,12 +51,16 @@ public class MainActivity extends FragmentActivity implements OnTabChangeListene
     private Toolbar mSupportActionBar;
     private Intent bluetoothIntent;
     private String gestureArray = " ";
+    final Random rnd = new Random();
+
+    int[] mArray = {drawable.img_0, drawable.img_1, drawable.img_2, drawable.img_3, drawable.img_4, drawable.img_5};
 
     public void onDestroy() {
         super.onDestroy();
         unbindService(ServiceConnectionService.getServiceConnection());
     }
 
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public void onResume() {
         super.onResume();
         bluetoothIntent = new Intent(this, BluetoothLeService.class);
@@ -70,14 +87,14 @@ public class MainActivity extends FragmentActivity implements OnTabChangeListene
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(layout.activity_main);
 
         // Setup main menu toolbar
-        mActionBartoolbar = (Toolbar) findViewById(R.id.toolbar_main);
+        mActionBartoolbar = (Toolbar) findViewById(id.toolbar_main);
         setSupportActionBar(mActionBartoolbar);
-        getSupportActionBar().setTitle(R.string.app_name);
-        getSupportActionBar().setLogo(R.mipmap.ic_launcher_slig);
-        mActionBartoolbar.inflateMenu(R.menu.menu_main);
+        getSupportActionBar().setTitle(string.app_name);
+        getSupportActionBar().setLogo(mipmap.ic_launcher_slig);
+        mActionBartoolbar.inflateMenu(menu.menu_main);
 
         // Set an OnMenuItemClickListener to handle menu item clicks
         mActionBartoolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
@@ -89,7 +106,7 @@ public class MainActivity extends FragmentActivity implements OnTabChangeListene
             }
         });
 
-        mViewPager = (ViewPager) findViewById(R.id.viewpager);
+        mViewPager = (ViewPager) findViewById(id.viewpager);
 
         // Tab Initialization
         initialiseTabHost();
@@ -151,7 +168,7 @@ public class MainActivity extends FragmentActivity implements OnTabChangeListene
 
             // Put your Fragments here
             FragmentTranslator f1 = FragmentTranslator.newInstance("");
-            FragmentLibrary f2 = FragmentLibrary.newInstance("");
+            FragmentLearning f2 = FragmentLearning.newInstance("");
             fList.add(f1);
             fList.add(f2);
 
@@ -165,7 +182,7 @@ public class MainActivity extends FragmentActivity implements OnTabChangeListene
 
             // TODO Put here your Tabs
             MainActivity.AddTab(this, this.mTabHost, this.mTabHost.newTabSpec("Translator").setIndicator("Translator"));
-            MainActivity.AddTab(this, this.mTabHost, this.mTabHost.newTabSpec("Gesture Library").setIndicator("Gesture Library"));
+            MainActivity.AddTab(this, this.mTabHost, this.mTabHost.newTabSpec("Learning Mode").setIndicator("Learning Mode"));
 
             mTabHost.setOnTabChangedListener(this);
         }
@@ -181,18 +198,50 @@ public class MainActivity extends FragmentActivity implements OnTabChangeListene
     private void displayData(String data) {
 
         if (data != null) {
-            TextView primaryGesture = (TextView) findViewById(R.id.txtViewPrimaryGesture);
-            TextView gestureList = (TextView) findViewById(R.id.txtViewGestureList);
+            // Learning Mode display
+            ImageView gestureImage = (ImageView) findViewById(R.id.imgViewLearningGesture);
+            TextView learningGesture = (TextView) findViewById(id.txtViewLearningMode);
+            int r = rnd.nextInt(5);
+            gestureImage.setImageDrawable(getResources().getDrawable(mArray[r]));
+
+//            gestureImage.setImageDrawable(getResources().getDrawable(drawable.img_0));
+//            final String str = "img_" + r;
+//            gestureImage.setImageDrawable(
+//                            getResources().getDrawable(getResourceID(str, "drawable", getApplicationContext())));
+
+            // Translator display
+            TextView primaryGesture = (TextView) findViewById(id.txtViewTranslator);
+            TextView gestureList = (TextView) findViewById(id.txtViewGestureList);
             Character letter = data.charAt(0);
             String gesture = letter.toString();
             if(Character.isLetter(letter)) {
                 primaryGesture.setText(gesture);
+                learningGesture.setText(gesture);
                 gestureArray = gestureArray + gesture;
                 Character testChar = gestureArray.charAt(gestureArray.length() - 2);
                 if(testChar != letter)    {
-                    gestureList.setText(gestureList.getText() + letter.toString());
+                    gestureList.setText(gestureList.getText() + " " + letter.toString());
                 }
             }
+
+            if(r == Arrays.asList(mArray).indexOf(gestureImage))  {
+                Toast.makeText(MainActivity.this, "Good job!", Toast.LENGTH_SHORT).show();
+            }
+            else{
+                Toast.makeText(MainActivity.this, "Try Again!", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    protected final static int getResourceID (final String resName, final String resType, final Context ctx)
+    {
+        final int ResourceID =
+                ctx.getResources().getIdentifier(resName, resType, ctx.getApplicationInfo().packageName);
+        if (ResourceID == 0) {
+            throw new IllegalArgumentException("No resource string found with name " + resName);
+        }
+        else {
+            return ResourceID;
         }
     }
 

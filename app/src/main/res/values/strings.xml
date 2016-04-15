@@ -4,6 +4,7 @@
     <string name="action_settings">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="default_gesture">"?"</string>
+    <string name="learning_mode_msg">Perform the gesture shown below to move onto the next one.</string>
 
     <!-- BLE items -->
     <string name="ble_not_supported">BLE is not supported</string>

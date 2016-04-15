@@ -14,7 +14,7 @@
         android:text=""/>
 
     <TextView
-        android:id="@+id/txtViewPrimaryGesture"
+        android:id="@+id/txtViewTranslator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
