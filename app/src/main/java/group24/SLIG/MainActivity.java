@@ -1,8 +1,8 @@
 package group24.SLIG;
 
-import java.sql.Types;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -12,12 +12,14 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.content.res.TypedArrayUtils;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.support.v7.widget.Toolbar;
@@ -27,8 +29,6 @@ import android.widget.TabHost;
 import android.widget.TabHost.OnTabChangeListener;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import org.w3c.dom.Text;
 
 import group24.SLIG.bluetooth.BluetoothLeService;
 import group24.SLIG.bluetooth.DeviceScanActivity;
@@ -53,7 +53,10 @@ public class MainActivity extends FragmentActivity implements OnTabChangeListene
     private String gestureArray = " ";
     final Random rnd = new Random();
 
-    int[] mArray = {drawable.img_0, drawable.img_1, drawable.img_2, drawable.img_3, drawable.img_4, drawable.img_5};
+    int[] mImageArray = {drawable.img_0, drawable.img_1, drawable.img_2, drawable.img_3, drawable.img_4, drawable.img_5};
+    String[] mLetterArray = {"A", "B", "C", "D", "E", "F"};
+    private int mLengthOfArray = mImageArray.length;
+    private float mScaleFactor = (float) 3;
 
     public void onDestroy() {
         super.onDestroy();
@@ -202,12 +205,15 @@ public class MainActivity extends FragmentActivity implements OnTabChangeListene
             ImageView gestureImage = (ImageView) findViewById(R.id.imgViewLearningGesture);
             TextView learningGesture = (TextView) findViewById(id.txtViewLearningMode);
             int r = rnd.nextInt(5);
-            gestureImage.setImageDrawable(getResources().getDrawable(mArray[r]));
+//            scaleImage(imgResize, mScaleFactor);
+            gestureImage.setImageDrawable(getResources().getDrawable(mImageArray[r]));
+//            Drawable imgResize = gestureImage.getDrawable();
+//            resize(imgResize);
+//            gestureImage.setImageDrawable(imgResize);
 
-//            gestureImage.setImageDrawable(getResources().getDrawable(drawable.img_0));
-//            final String str = "img_" + r;
-//            gestureImage.setImageDrawable(
-//                            getResources().getDrawable(getResourceID(str, "drawable", getApplicationContext())));
+//            Bitmap bMap = BitmapFactory.decodeResource(getResources(), gestureImage);
+//            Bitmap bMapScaled = Bitmap.createScaledBitmap(bMap, 200, 200, true);
+//            gestureImage.setImageBitmap(bMapScaled);
 
             // Translator display
             TextView primaryGesture = (TextView) findViewById(id.txtViewTranslator);
@@ -224,7 +230,8 @@ public class MainActivity extends FragmentActivity implements OnTabChangeListene
                 }
             }
 
-            if(r == Arrays.asList(mArray).indexOf(gestureImage))  {
+            boolean letterTest = indexOfArray(r, gesture);
+            if(letterTest)  {
                 Toast.makeText(MainActivity.this, "Good job!", Toast.LENGTH_SHORT).show();
             }
             else{
@@ -233,16 +240,14 @@ public class MainActivity extends FragmentActivity implements OnTabChangeListene
         }
     }
 
-    protected final static int getResourceID (final String resName, final String resType, final Context ctx)
-    {
-        final int ResourceID =
-                ctx.getResources().getIdentifier(resName, resType, ctx.getApplicationInfo().packageName);
-        if (ResourceID == 0) {
-            throw new IllegalArgumentException("No resource string found with name " + resName);
+    private boolean indexOfArray(int r,String gesture) {
+        int resID = getResources().getIdentifier(String.valueOf(mImageArray[r]), "drawable", getPackageName());
+        for (int i=0; i<mLengthOfArray; i++)  {
+            if(resID == mImageArray[i]){
+                return true;
+            }
         }
-        else {
-            return ResourceID;
-        }
+        return false;
     }
 
     private static IntentFilter makeGattUpdateIntentFilter() {
@@ -252,6 +257,27 @@ public class MainActivity extends FragmentActivity implements OnTabChangeListene
         intentFilter.addAction(BluetoothLeService.ACTION_GATT_SERVICES_DISCOVERED);
         intentFilter.addAction(BluetoothLeService.ACTION_DATA_AVAILABLE);
         return intentFilter;
+    }
+
+    public Drawable scaleImage(Drawable image, float scaleFactor) {
+
+        if ((image == null) || !(image instanceof BitmapDrawable)) {
+            return image;
+        }
+        Bitmap b = ((BitmapDrawable)image).getBitmap();
+
+        int sizeX = Math.round(image.getIntrinsicWidth() * scaleFactor);
+        int sizeY = Math.round(image.getIntrinsicHeight() * scaleFactor);
+
+        Bitmap bitmapResized = Bitmap.createScaledBitmap(b, sizeX, sizeY, false);
+        image = new BitmapDrawable(getResources(), bitmapResized);
+        return image;
+    }
+
+    private Drawable resize(Drawable image) {
+        Bitmap b = ((BitmapDrawable)image).getBitmap();
+        Bitmap bitmapResized = Bitmap.createScaledBitmap(b, 300, 300, false);
+        return new BitmapDrawable(getResources(), bitmapResized);
     }
 }
 

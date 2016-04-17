@@ -22,7 +22,7 @@
         android:id="@+id/imgViewLearningGesture"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="@dimen/appbar_padding_top"
+        android:paddingTop="12dp"
         android:layout_gravity="top"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
@@ -42,7 +42,7 @@
         android:paddingTop="@dimen/activity_vertical_margin"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/default_gesture"
-        android:textSize="250sp"
+        android:textSize="175sp"
         android:layout_gravity="bottom"
         />
 </LinearLayout>
