@@ -1,8 +1,6 @@
 package group24.SLIG;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -13,7 +11,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -23,6 +20,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TabHost;
@@ -50,13 +48,18 @@ public class MainActivity extends FragmentActivity implements OnTabChangeListene
     private Toolbar mActionBartoolbar;
     private Toolbar mSupportActionBar;
     private Intent bluetoothIntent;
+//    ImageView mGestureImage = (ImageView) findViewById(R.id.imgViewLearningGesture);
+//    TextView mLearningGesture = (TextView) findViewById(id.txtViewLearningMode);
+
     private String gestureArray = " ";
     final Random rnd = new Random();
+    private int r = rnd.nextInt(5);
 
     int[] mImageArray = {drawable.img_0, drawable.img_1, drawable.img_2, drawable.img_3, drawable.img_4, drawable.img_5};
     String[] mLetterArray = {"A", "B", "C", "D", "E", "F"};
-    private int mLengthOfArray = mImageArray.length;
     private float mScaleFactor = (float) 3;
+    private int mImageIndex = 0;
+    private int mLetterIndex = 0;
 
     public void onDestroy() {
         super.onDestroy();
@@ -202,18 +205,21 @@ public class MainActivity extends FragmentActivity implements OnTabChangeListene
 
         if (data != null) {
             // Learning Mode display
-            ImageView gestureImage = (ImageView) findViewById(R.id.imgViewLearningGesture);
-            TextView learningGesture = (TextView) findViewById(id.txtViewLearningMode);
-            int r = rnd.nextInt(5);
-//            scaleImage(imgResize, mScaleFactor);
-            gestureImage.setImageDrawable(getResources().getDrawable(mImageArray[r]));
-//            Drawable imgResize = gestureImage.getDrawable();
-//            resize(imgResize);
-//            gestureImage.setImageDrawable(imgResize);
 
-//            Bitmap bMap = BitmapFactory.decodeResource(getResources(), gestureImage);
+            ImageView mGestureImage = (ImageView) findViewById(R.id.imgViewLearningGesture);
+            TextView mLearningGesture = (TextView) findViewById(id.txtViewLearningMode);
+            mGestureImage.setImageDrawable(getResources().getDrawable(mImageArray[r]));
+
+
+//            scaleImage(imgResize, mScaleFactor);
+
+//            Drawable imgResize = mGestureImage.getDrawable();
+//            resize(imgResize);
+//            mGestureImage.setImageDrawable(imgResize);
+
+//            Bitmap bMap = BitmapFactory.decodeResource(getResources(), mGestureImage);
 //            Bitmap bMapScaled = Bitmap.createScaledBitmap(bMap, 200, 200, true);
-//            gestureImage.setImageBitmap(bMapScaled);
+//            mGestureImage.setImageBitmap(bMapScaled);
 
             // Translator display
             TextView primaryGesture = (TextView) findViewById(id.txtViewTranslator);
@@ -222,7 +228,7 @@ public class MainActivity extends FragmentActivity implements OnTabChangeListene
             String gesture = letter.toString();
             if(Character.isLetter(letter)) {
                 primaryGesture.setText(gesture);
-                learningGesture.setText(gesture);
+                mLearningGesture.setText(gesture);
                 gestureArray = gestureArray + gesture;
                 Character testChar = gestureArray.charAt(gestureArray.length() - 2);
                 if(testChar != letter)    {
@@ -230,9 +236,14 @@ public class MainActivity extends FragmentActivity implements OnTabChangeListene
                 }
             }
 
-            boolean letterTest = indexOfArray(r, gesture);
-            if(letterTest)  {
+            // Learning Mode display update
+            mImageIndex = indexOfImageArray(r);
+            mLetterIndex = indexOfLetterArray(gesture);
+
+            if(mImageIndex == mLetterIndex)  {
                 Toast.makeText(MainActivity.this, "Good job!", Toast.LENGTH_SHORT).show();
+                r = rnd.nextInt(5);
+                mGestureImage.setImageDrawable(getResources().getDrawable(mImageArray[r]));
             }
             else{
                 Toast.makeText(MainActivity.this, "Try Again!", Toast.LENGTH_SHORT).show();
@@ -240,14 +251,25 @@ public class MainActivity extends FragmentActivity implements OnTabChangeListene
         }
     }
 
-    private boolean indexOfArray(int r,String gesture) {
+    private int indexOfImageArray(int r) {
         int resID = getResources().getIdentifier(String.valueOf(mImageArray[r]), "drawable", getPackageName());
-        for (int i=0; i<mLengthOfArray; i++)  {
+        int imageIndex = -1;
+        for (int i=0; i<mImageArray.length; i++)  {
             if(resID == mImageArray[i]){
-                return true;
+                imageIndex = i;
             }
         }
-        return false;
+        return imageIndex;
+    }
+
+    private int indexOfLetterArray(String gesture) {
+        int letterIndex = -1;
+        for (int i=0; i<mImageArray.length; i++)  {
+            if(gesture.equals(mLetterArray[i]))  {
+                letterIndex = i;
+            }
+        }
+        return letterIndex;
     }
 
     private static IntentFilter makeGattUpdateIntentFilter() {
