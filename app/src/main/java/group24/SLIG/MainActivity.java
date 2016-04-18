@@ -52,18 +52,22 @@ public class MainActivity extends FragmentActivity implements OnTabChangeListene
     private Toolbar mSupportActionBar;
     private Intent bluetoothIntent;
 
-    private String gestureArray = " ";
-    final Random rnd = new Random();
-    private int r = rnd.nextInt(5);
-    private int mImageIndex = 0;
-    private int mLetterIndex = 0;
-    private float mScaleFactor = (float) 3;
+    public int[] getImageArray() {
+        return mImageArray;
+    }
 
     int[] mImageArray = {drawable.img_0, drawable.img_1, drawable.img_2, drawable.img_3, drawable.img_4, drawable.img_5, drawable.img_6,
             drawable.img_7, drawable.img_8, drawable.img_9, drawable.img_10, drawable.img_11, drawable.img_12, drawable.img_13, drawable.img_14,
             drawable.img_15, drawable.img_16, drawable.img_17, drawable.img_18, drawable.img_19, drawable.img_20, drawable.img_21, drawable.img_22,
             drawable.img_23, drawable.img_24, drawable.img_25};
     String[] mLetterArray = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
+
+    private String gestureArray = " ";
+    final Random rnd = new Random();
+    private int r = rnd.nextInt(mImageArray.length);
+    private int mImageIndex = 0;
+    private int mLetterIndex = 0;
+    private float mScaleFactor = (float) 3;
 
     public void onDestroy() {
         super.onDestroy();
