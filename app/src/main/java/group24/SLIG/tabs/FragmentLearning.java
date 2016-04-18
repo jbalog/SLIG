@@ -17,7 +17,6 @@ import group24.SLIG.R;
 
 public class FragmentLearning extends Fragment{
     private static View mView;
-    int[] mArray = {R.drawable.img_0, R.drawable.img_1, R.drawable.img_2, R.drawable.img_3, R.drawable.img_4, R.drawable.img_5};
 
     public static final FragmentLearning newInstance(String sampleText) {
         FragmentLearning f = new FragmentLearning();
@@ -43,5 +42,17 @@ public class FragmentLearning extends Fragment{
 //        txtSampleText.setText(sampleText);
 
         return mView;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        setUserVisibleHint(true);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        setUserVisibleHint(false);
     }
 }

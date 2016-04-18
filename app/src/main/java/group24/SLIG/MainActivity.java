@@ -17,11 +17,14 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TabHost;
 import android.widget.TabHost.OnTabChangeListener;
@@ -48,18 +51,19 @@ public class MainActivity extends FragmentActivity implements OnTabChangeListene
     private Toolbar mActionBartoolbar;
     private Toolbar mSupportActionBar;
     private Intent bluetoothIntent;
-//    ImageView mGestureImage = (ImageView) findViewById(R.id.imgViewLearningGesture);
-//    TextView mLearningGesture = (TextView) findViewById(id.txtViewLearningMode);
 
     private String gestureArray = " ";
     final Random rnd = new Random();
     private int r = rnd.nextInt(5);
-
-    int[] mImageArray = {drawable.img_0, drawable.img_1, drawable.img_2, drawable.img_3, drawable.img_4, drawable.img_5};
-    String[] mLetterArray = {"A", "B", "C", "D", "E", "F"};
-    private float mScaleFactor = (float) 3;
     private int mImageIndex = 0;
     private int mLetterIndex = 0;
+    private float mScaleFactor = (float) 3;
+
+    int[] mImageArray = {drawable.img_0, drawable.img_1, drawable.img_2, drawable.img_3, drawable.img_4, drawable.img_5, drawable.img_6,
+            drawable.img_7, drawable.img_8, drawable.img_9, drawable.img_10, drawable.img_11, drawable.img_12, drawable.img_13, drawable.img_14,
+            drawable.img_15, drawable.img_16, drawable.img_17, drawable.img_18, drawable.img_19, drawable.img_20, drawable.img_21, drawable.img_22,
+            drawable.img_23, drawable.img_24, drawable.img_25};
+    String[] mLetterArray = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
 
     public void onDestroy() {
         super.onDestroy();
@@ -204,12 +208,15 @@ public class MainActivity extends FragmentActivity implements OnTabChangeListene
     private void displayData(String data) {
 
         if (data != null) {
-            // Learning Mode display
 
+            // Translator display
+            TextView primaryGesture = (TextView) findViewById(id.txtViewTranslator);
+            TextView gestureList = (TextView) findViewById(id.txtViewGestureList);
+
+            // Learning Mode display
             ImageView mGestureImage = (ImageView) findViewById(R.id.imgViewLearningGesture);
             TextView mLearningGesture = (TextView) findViewById(id.txtViewLearningMode);
             mGestureImage.setImageDrawable(getResources().getDrawable(mImageArray[r]));
-
 
 //            scaleImage(imgResize, mScaleFactor);
 
@@ -221,9 +228,6 @@ public class MainActivity extends FragmentActivity implements OnTabChangeListene
 //            Bitmap bMapScaled = Bitmap.createScaledBitmap(bMap, 200, 200, true);
 //            mGestureImage.setImageBitmap(bMapScaled);
 
-            // Translator display
-            TextView primaryGesture = (TextView) findViewById(id.txtViewTranslator);
-            TextView gestureList = (TextView) findViewById(id.txtViewGestureList);
             Character letter = data.charAt(0);
             String gesture = letter.toString();
             if(Character.isLetter(letter)) {
@@ -241,12 +245,17 @@ public class MainActivity extends FragmentActivity implements OnTabChangeListene
             mLetterIndex = indexOfLetterArray(gesture);
 
             if(mImageIndex == mLetterIndex)  {
-                Toast.makeText(MainActivity.this, "Good job!", Toast.LENGTH_SHORT).show();
-                r = rnd.nextInt(5);
+                // TODO:  Make TOAST only display when the Learning Mode tab is visible
+//                Toast toast = Toast.makeText(MainActivity.this, "Good job!", Toast.LENGTH_SHORT);
+//                toast.setGravity(Gravity.BOTTOM, 0, 0);
+//                toast.show();
+                r = rnd.nextInt(mImageArray.length);
                 mGestureImage.setImageDrawable(getResources().getDrawable(mImageArray[r]));
             }
             else{
-                Toast.makeText(MainActivity.this, "Try Again!", Toast.LENGTH_SHORT).show();
+//                Toast toast = Toast.makeText(MainActivity.this, "Try again!", Toast.LENGTH_SHORT);
+//                toast.setGravity(Gravity.BOTTOM, 0, 0);
+//                toast.show();
             }
         }
     }
@@ -301,5 +310,6 @@ public class MainActivity extends FragmentActivity implements OnTabChangeListene
         Bitmap bitmapResized = Bitmap.createScaledBitmap(b, 300, 300, false);
         return new BitmapDrawable(getResources(), bitmapResized);
     }
+
 }
 
